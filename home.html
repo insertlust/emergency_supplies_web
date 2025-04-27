@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CV Acute HFNC Eligibility Checker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>CV Acute HFNC Eligibility Checker</h1>
+
+        <form method="POST" class="form-section">
+            <h2>Inclusion Criteria</h2>
+            <label>1. Primary diagnosis of bronchiolitis, asthma (RAD), or simple pneumonia?</label><br>
+            <input type="radio" name="inclusion1" value="yes" required> Yes
+            <input type="radio" name="inclusion1" value="no" required> No
+            <br><br>
+
+            <label>2. Admitted to CV Acute or CTICU?</label><br>
+            <input type="radio" name="inclusion2" value="yes" required> Yes
+            <input type="radio" name="inclusion2" value="no" required> No
+            <br><br>
+
+            <h2>Exclusion Criteria</h2>
+
+            <label>1. pcO₂ > 60 mmHg (ABG/CBG) OR pH < 7.2?</label><br>
+            <input type="radio" name="exclusion1" value="yes" required> Yes
+            <input type="radio" name="exclusion1" value="no" required> No
+            <br><br>    
+
+            <label>2. Altered mental status?</label><br>
+            <input type="radio" name="exclusion2" value="yes" required> Yes
+            <input type="radio" name="exclusion2" value="no" required> No
+            <br><br>
+
+            <label>3. Non-fluid responsive shock?</label><br>
+            <input type="radio" name="exclusion3" value="yes" required> Yes
+            <input type="radio" name="exclusion3" value="no" required> No
+            <br><br>
+
+            <label>4. Apnea requiring intervention?</label><br>
+            <input type="radio" name="exclusion4" value="yes" required> Yes
+            <input type="radio" name="exclusion4" value="no" required> No
+            <br><br>
+
+            <label>5. Patient on continuous albuterol?</label><br>
+            <input type="radio" name="exclusion5" value="yes" required> Yes
+            <input type="radio" name="exclusion5" value="no" required> No
+            <br><br>
+
+            <label>6. Choanal atresia?</label><br>
+            <input type="radio" name="exclusion6" value="yes" required> Yes
+            <input type="radio" name="exclusion6" value="no" required> No
+            <br><br>
+
+            <label>7. Need for positive pressure ventilation?</label><br>
+            <input type="radio" name="exclusion7" value="yes" required> Yes
+            <input type="radio" name="exclusion7" value="no" required> No
+            <br><br>
+
+            <label>8. Patient admitted from outside facility already on HHFNC?</label><br>
+            <input type="radio" name="exclusion8" value="yes" required> Yes
+            <input type="radio" name="exclusion8" value="no" required> No
+            <br><br>
+
+            <label>9. Post-conceptual age &lt; 42 weeks?</label><br>
+            <input type="radio" name="exclusion9" value="yes" required> Yes
+            <input type="radio" name="exclusion9" value="no" required> No
+            <br><br>
+
+            <h2>Respiratory Status</h2>
+            <label>RS 5–8 after suction/therapy?</label><br>
+            <input type="radio" name="rs_score" value="yes" required> Yes
+            <input type="radio" name="rs_score" value="no" required> No
+            <br><br>
+
+            <h2>Pre-Transfer Conditions</h2>
+            <label>Minimum 2 hours stable or weaning on HHFNC?</label><br>
+            <input type="radio" name="stable_obs" value="yes" required> Yes
+            <input type="radio" name="stable_obs" value="no" required> No
+            <br><br>
+
+            <label>ICU consult completed?</label><br>
+            <input type="radio" name="icu_consult" value="yes" required> Yes
+            <input type="radio" name="icu_consult" value="no" required> No
+            <br><br>
+
+            <button type="submit">Check Eligibility</button>
+        </form>
+
+        {% if result == "pass" %}
+            <div class="result pass">
+                ✅ Patient meets CV Acute Admission Criteria!
+            </div>
+        {% elif result == "fail" %}
+            <div class="result fail">
+                🚨 Patient does NOT meet CV Acute Admission Criteria.<br>
+                <small>Reason: {{ fail_step }}</small>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
